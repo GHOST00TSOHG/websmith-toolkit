@@ -1,0 +1,9 @@
+node_modules
+out
+renders/
+*.mp4
+.env
+.env.*
+__pycache__/
+*.pyc
+.DS_Store

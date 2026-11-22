@@ -1,0 +1,17 @@
+{
+  "_doc": "One shared element (dot) carried through every cut. units:short = offsets from frame centre in short-side units (aspect-independent); formats{} = per-format partial overrides. See PLAYBOOK.md.",
+  "specs": [
+    {"id": "dot", "fromScene": "hook", "toScene": "problem",
+     "from": {"units": "short", "x": 0, "y": 0.26, "scale": 0.6, "formats": {"9x16": {"y": 0.42}}},
+     "to":   {"units": "short", "x": 0, "y": 0.3,  "scale": 0.5, "formats": {"9x16": {"y": 0.46}}},
+     "leadIn": 0.15, "tail": 0.1},
+    {"id": "dot", "fromScene": "problem", "toScene": "reveal",
+     "from": {"units": "short", "x": 0, "y": 0.3,  "scale": 0.5, "formats": {"9x16": {"y": 0.46}}},
+     "to":   {"units": "short", "x": 0, "y": -0.34, "scale": 1.0, "formats": {"9x16": {"y": -0.5}}},
+     "leadIn": 0.15, "tail": 0.1},
+    {"id": "dot", "fromScene": "reveal", "toScene": "payoff",
+     "from": {"units": "short", "x": 0, "y": -0.34, "scale": 1.0, "formats": {"9x16": {"y": -0.5}}},
+     "to":   {"units": "short", "x": 0, "y": -0.3, "scale": 0.45, "formats": {"9x16": {"y": -0.42}}},
+     "leadIn": 0.1, "tail": 0.1}
+  ]
+}

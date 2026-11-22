@@ -1,0 +1,14 @@
+{
+  "title": "Make it move (demo)",
+  "fps": 30,
+  "music": {"bpm": 116, "key": "A minor", "mood": "tense to triumphant"},
+  "scenes": [
+    {"id": "hook",     "beat": "hook",    "duration": 3.2, "transitionOut": {"type": "push", "duration": 0.5},       "note": "Countdown hook"},
+    {"id": "problem",  "beat": "problem", "duration": 3.0, "transitionOut": {"type": "wipe", "duration": 0.5},       "note": "Slides don't get read"},
+    {"id": "problem2", "beat": "problem", "duration": 2.8, "transitionOut": {"type": "cameraDive", "duration": 0.6}, "note": "Static is forgettable"},
+    {"id": "build",    "beat": "build",   "duration": 3.6, "transitionOut": {"type": "push", "duration": 0.5},       "note": "Story arc draws on"},
+    {"id": "build2",   "beat": "build",   "duration": 3.0, "transitionOut": {"type": "matchCut", "duration": 0.3},   "note": "Ingredients rail, dot hands off"},
+    {"id": "reveal",   "beat": "reveal",  "duration": 3.4, "transitionOut": {"type": "zoomOut", "duration": 0.6},    "note": "Dot morphs to play button"},
+    {"id": "payoff",   "beat": "payoff",  "duration": 4.0,                                                          "note": "Make it move"}
+  ]
+}

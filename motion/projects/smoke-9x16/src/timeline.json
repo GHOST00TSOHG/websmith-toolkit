@@ -1,0 +1,11 @@
+{
+  "title": "Smoke test: plain template in 9:16 (vertical layout + hand-off poses)",
+  "fps": 30,
+  "music": {"bpm": 112, "key": "A minor", "mood": "upbeat", "feel": "confident, modern"},
+  "scenes": [
+    {"id": "hook",    "beat": "hook",    "duration": 2.3, "transitionOut": {"type": "push", "duration": 0.4}, "sfx": ["whoosh"]},
+    {"id": "problem", "beat": "problem", "duration": 2.3, "transitionOut": {"type": "cameraDive", "duration": 0.5}, "sfx": ["whoosh"]},
+    {"id": "reveal",  "beat": "reveal",  "duration": 2.3, "transitionOut": {"type": "mask", "duration": 0.5}, "sfx": ["impact"]},
+    {"id": "payoff",  "beat": "payoff",  "duration": 2.0}
+  ]
+}

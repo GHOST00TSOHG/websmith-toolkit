@@ -1,0 +1,6 @@
+{
+  "loudness": {"target": -14, "tolerance": 1, "max_true_peak": -1.0},
+  "black":  {"min_duration": 0.5, "pix_th": 0.05, "pic_th": 0.98},
+  "freeze": {"noise": "-60dB", "min_duration": 2.5},
+  "allow": []
+}

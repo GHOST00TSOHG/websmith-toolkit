@@ -1,0 +1,8 @@
+{
+  "specs": [
+    {"id": "dot", "fromScene": "build2", "toScene": "reveal",
+     "from": {"x": 0.5, "y": 0.84, "scale": 0.22},
+     "to":   {"x": 0.5, "y": 0.36, "scale": 1.0},
+     "leadIn": 0.35, "tail": 0.05}
+  ]
+}
