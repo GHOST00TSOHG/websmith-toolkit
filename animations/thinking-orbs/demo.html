@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ThinkingOrbs demo</title>
+<style>
+  :root {
+    --bg: #f4f2ed;
+    --fg: #1a1a1a;
+    --muted: #6b6b6b;
+    --card: #fffdf8;
+    --line: #d8d4cb;
+    --chip: #efece4;
+    --code: #ece8e0;
+  }
+  [data-theme="dark"] {
+    --bg: #161513;
+    --fg: #efece6;
+    --muted: #9a958c;
+    --card: #1f1e1b;
+    --line: #33302b;
+    --chip: #2a2824;
+    --code: #2a2824;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--fg); }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.45;
+    padding: 28px 16px 72px;
+  }
+  main { max-width: 980px; margin: 0 auto; }
+  header { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 28px; }
+  h1 { font-size: 1.35rem; font-weight: 600; margin: 0 0 6px; letter-spacing: -0.02em; }
+  .lede { margin: 0; color: var(--muted); max-width: 42em; }
+  .controls { display: flex; gap: 8px; flex-wrap: wrap; }
+  button {
+    appearance: none; border: 1px solid var(--line); background: var(--card); color: var(--fg);
+    border-radius: 999px; padding: 6px 12px; font: inherit; font-size: 0.9rem; cursor: pointer;
+  }
+  button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .strip {
+    display: flex; flex-wrap: wrap; gap: 18px; align-items: center; justify-content: center;
+    padding: 22px 16px; border: 1px solid var(--line); border-radius: 16px; background: var(--card);
+    margin-bottom: 28px;
+  }
+  .strip figure { margin: 0; text-align: center; }
+  .strip figcaption { font-size: 0.7rem; color: var(--muted); margin-top: 6px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+  .card {
+    border: 1px solid var(--line); border-radius: 16px; padding: 18px 16px 16px;
+    background: var(--card); display: flex; flex-direction: column; gap: 8px;
+  }
+  .orbs { display: flex; align-items: center; justify-content: center; gap: 16px; min-height: 72px; }
+  .card h2 { margin: 4px 0 0; font-size: 1rem; font-weight: 600; }
+  .card p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+  code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.8rem; }
+  .card code { background: var(--code); padding: 2px 6px; border-radius: 6px; width: fit-content; }
+  section { margin-top: 36px; }
+  section h2 { font-size: 1.05rem; margin: 0 0 12px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--chip); border: 1px solid var(--line);
+    border-radius: 999px; padding: 6px 14px 6px 8px;
+  }
+  .shimmer {
+    background: linear-gradient(90deg, var(--fg) 0%, var(--fg) 36%, var(--muted) 50%, var(--fg) 64%, var(--fg) 100%);
+    background-size: 220% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    animation: shimmer 2.4s linear infinite;
+  }
+  @keyframes shimmer { to { background-position: -220% 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .shimmer { animation: none; color: var(--fg); background: none; }
+  }
+  pre { background: var(--code); padding: 14px 16px; border-radius: 12px; overflow-x: auto; margin: 0; }
+  footer { margin-top: 48px; color: var(--muted); font-size: 0.85rem; }
+  footer a { color: inherit; }
+  canvas { display: block; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>ThinkingOrbs</h1>
+      <p class="lede">Nine dotted, honestly-3D “thinking” indicators for AI and agent UIs. Two tuned sizes, light and dark. Live canvas, no CDN — the official <code>thinking-orbs</code> 0.3.2 engine, MIT.</p>
+    </div>
+    <div class="controls">
+      <button type="button" id="themeBtn" aria-pressed="false">Dark</button>
+      <button type="button" id="pauseBtn" aria-pressed="false">Pause</button>
+    </div>
+  </header>
+
+  <div class="strip" id="strip" aria-label="All nine designs at regular size"></div>
+  <div class="grid" id="grid"></div>
+
+  <section>
+    <h2>Status labels</h2>
+    <div class="chips" id="chips"></div>
+  </section>
+
+  <section>
+    <h2>Drop into a project</h2>
+    <pre><code>npm install thinking-orbs
+
+import { ThinkingOrb } from "thinking-orbs";
+
+&lt;ThinkingOrb state="searching" size={64} /&gt;
+&lt;ThinkingOrb state="working" size={20} /&gt;</code></pre>
+    <p style="color:var(--muted);margin:12px 0 0">SwiftUI (iOS 17+): add package <code>https://github.com/haplollc/ThinkingOrbs</code>, then <code>ThinkingOrb(.searching)</code> or <code>ThinkingOrbLabel("Searching the web…", design: .searching)</code>. See README.md and HOW-TO-MAKE.md in this folder.</p>
+  </section>
+
+  <footer>
+    <p>Engine: <a href="https://github.com/Jakubantalik/thinking-orbs">Jakubantalik/thinking-orbs</a> v0.3.2, MIT, Copyright 2026 Jakub Antalik. Swift port: <a href="https://github.com/haplollc/ThinkingOrbs">haplollc/ThinkingOrbs</a>, MIT, Copyright 2026 Haplo LLC and Jakub Antalik. Promoted in <a href="https://x.com/protoduct_ai/status/2124329219358687456">this post</a> by @protoduct_ai. This page vendors the engine locally and does not load anything from the network.</p>
+  </footer>
+</main>
+
+<script src="./vendor/thinking-orbs-engine.js"></script>
+<script>
+(function () {
+  const STATES = [
+    { id: "working",    title: "Working",    blurb: "Particles on tilted orbits",           use: "General-purpose busy",          swift: "ThinkingOrb(.working)",    label: "Working…" },
+    { id: "searching",  title: "Searching",  blurb: "A scan meridian sweeps a dotted globe", use: "Web search, retrieval, lookups", swift: "ThinkingOrb(.searching)",  label: "Searching the web…" },
+    { id: "solving",    title: "Solving",    blurb: "Bands scramble, then click back solved", use: "Reasoning, math, code",         swift: "ThinkingOrb(.solving)",    label: "Solving…" },
+    { id: "listening",  title: "Listening",  blurb: "A waveform rolls through the rings",    use: "Voice input, transcription",    swift: "ThinkingOrb(.listening)",  label: "Listening…" },
+    { id: "connecting", title: "Connecting", blurb: "A constellation wires itself",          use: "Tool calls, APIs, sync",        swift: "ThinkingOrb(.connecting)", label: "Connecting…" },
+    { id: "weaving",    title: "Weaving",    blurb: "Three strands plait around the sphere", use: "Planning, multi-step agents",   swift: "ThinkingOrb(.weaving)",    label: "Weaving…" },
+    { id: "composing",  title: "Composing",  blurb: "An undulating multi-band sash",         use: "Writing a reply",               swift: "ThinkingOrb(.composing)",  label: "Composing a reply…" },
+    { id: "breathing",  title: "Breathing",  blurb: "A ring slowly morphing",                use: "Idle thinking, waiting on a model", swift: "ThinkingOrb(.breathing)", label: "Thinking…" },
+    { id: "shaping",    title: "Shaping",    blurb: "Circle → triangle → square",            use: "Design, image and layout work", swift: "ThinkingOrb(.shaping)",    label: "Shaping…" }
+  ];
+
+  const engine = window.ThinkingOrbs;
+  if (!engine) {
+    document.body.insertAdjacentHTML("afterbegin", "<p>Failed to load ./vendor/thinking-orbs-engine.js</p>");
+    return;
+  }
+
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const instances = [];
+  let dark = false;
+  let paused = false;
+
+  function mountOrb(el, state, size) {
+    const canvas = document.createElement("canvas");
+    canvas.setAttribute("role", "img");
+    canvas.setAttribute("aria-label", state);
+    canvas.style.width = size + "px";
+    canvas.style.height = size + "px";
+    el.appendChild(canvas);
+    const inst = { canvas, state, size, dpr: Math.min(2, window.devicePixelRatio || 1) };
+    resize(inst);
+    instances.push(inst);
+    return canvas;
+  }
+
+  function resize(inst) {
+    inst.dpr = Math.min(2, window.devicePixelRatio || 1);
+    inst.canvas.width = Math.round(inst.size * inst.dpr);
+    inst.canvas.height = Math.round(inst.size * inst.dpr);
+    inst.ctx = inst.canvas.getContext("2d");
+  }
+
+  function frame(inst, tSec) {
+    const { mode, speed, opts } = engine.resolvePreset(inst.state, inst.size);
+    const ctx = inst.ctx;
+    ctx.setTransform(inst.dpr, 0, 0, inst.dpr, 0, 0);
+    ctx.clearRect(0, 0, inst.size, inst.size);
+    engine.MODE_DRAWS[mode](ctx, inst.size, tSec * speed, dark, opts);
+  }
+
+  const strip = document.getElementById("strip");
+  const grid = document.getElementById("grid");
+  const chips = document.getElementById("chips");
+
+  STATES.forEach((s) => {
+    const fig = document.createElement("figure");
+    mountOrb(fig, s.id, 64);
+    const cap = document.createElement("figcaption");
+    cap.textContent = s.title;
+    fig.appendChild(cap);
+    strip.appendChild(fig);
+
+    const card = document.createElement("article");
+    card.className = "card";
+    const orbs = document.createElement("div");
+    orbs.className = "orbs";
+    mountOrb(orbs, s.id, 64);
+    mountOrb(orbs, s.id, 20);
+    card.appendChild(orbs);
+    card.insertAdjacentHTML("beforeend",
+      "<h2>" + s.title + "</h2>" +
+      "<p>" + s.blurb + "</p>" +
+      "<p>Reach for it when: " + s.use + "</p>" +
+      "<code>" + s.swift + "</code>"
+    );
+    grid.appendChild(card);
+
+    const chip = document.createElement("span");
+    chip.className = "chip";
+    mountOrb(chip, s.id, 20);
+    const lab = document.createElement("span");
+    lab.className = "shimmer";
+    lab.textContent = s.label;
+    chip.appendChild(lab);
+    chips.appendChild(chip);
+  });
+
+  let lastT = 0;
+  let acc = 0.6;
+  function loop(now) {
+    const t = now / 1000;
+    if (!paused && !reduced) acc = t;
+    const drawT = reduced ? 0.6 : acc;
+    if (drawT !== lastT || paused || reduced) {
+      for (const inst of instances) frame(inst, drawT);
+      lastT = drawT;
+    }
+    if (!reduced) requestAnimationFrame(loop);
+  }
+  if (reduced) {
+    for (const inst of instances) frame(inst, 0.6);
+  } else {
+    requestAnimationFrame(loop);
+  }
+
+  const root = document.documentElement;
+  const themeBtn = document.getElementById("themeBtn");
+  const pauseBtn = document.getElementById("pauseBtn");
+  function setTheme(next) {
+    dark = next;
+    root.setAttribute("data-theme", dark ? "dark" : "light");
+    themeBtn.setAttribute("aria-pressed", String(dark));
+    themeBtn.textContent = dark ? "Light" : "Dark";
+    if (paused || reduced) for (const inst of instances) frame(inst, reduced ? 0.6 : acc);
+  }
+  if (window.matchMedia("(prefers-color-scheme: dark)").matches) setTheme(true);
+  themeBtn.addEventListener("click", () => setTheme(!dark));
+  pauseBtn.addEventListener("click", () => {
+    paused = !paused;
+    pauseBtn.setAttribute("aria-pressed", String(paused));
+    pauseBtn.textContent = paused ? "Play" : "Pause";
+  });
+  window.addEventListener("resize", () => {
+    for (const inst of instances) resize(inst);
+  });
+})();
+</script>
+</body>
+</html>

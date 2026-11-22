@@ -10,7 +10,14 @@ This repository may start private. Raw fetch URLs work for anyone only after it 
 
 - `install/` — installers and the Xcode checklist
 - `motion/` — Remotion motion-graphics kit (see `motion/PLAYBOOK.md`)
-- `skills/` — portable builder skills (markdown)
+- `animations/thinking-orbs/` — vendored ThinkingOrbs engine, demo, and how-to
+- `skills/` — portable builder skills (markdown):
+  - `audio-reactive-visuals`
+  - `installable-pwa`
+  - `iphone-safari-touch-haptics`
+  - `stylized-water-sky-weather`
+  - `swiftui-home-widgets`
+  - `thinking-orbs` — dotted AI thinking and loading indicators (web or SwiftUI)
 - `LICENSE` — MIT, for the files in this repository
 
 ## How a bot uses an installer
@@ -59,5 +66,6 @@ Files in this repository are MIT (see `LICENSE`), except where a bundled third-p
 - **Motion kit fonts** — Inter and Jost, SIL Open Font License 1.1 (`motion/template/public/fonts/`).
 - **Lottie icons** — useAnimations (MIT) and Google Noto animated emoji (CC BY 4.0). Credit Noto as "Emoji animations: Animated Noto Emoji by Google, CC BY 4.0".
 - **Remotion and other npm packages** — their own licences, installed from the lockfile when you run `npm ci`.
+- **ThinkingOrbs** — MIT. The canvas/React engine and designs are Copyright 2026 Jakub Antalik (`thinking-orbs` 0.3.2). The SwiftUI port is Copyright 2026 Haplo LLC and Jakub Antalik. See `animations/thinking-orbs/NOTICE` and the LICENSE files in that folder.
 
 The installers download official upstream binaries. They do not vendor those binaries in this repository.
