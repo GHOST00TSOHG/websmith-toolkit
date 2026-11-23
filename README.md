@@ -12,9 +12,12 @@ This repository may start private. Raw fetch URLs work for anyone only after it 
 - `motion/` — Remotion motion-graphics kit (see `motion/PLAYBOOK.md`)
 - `animations/thinking-orbs/` — vendored ThinkingOrbs engine, demo, and how-to
 - `skills/` — portable builder skills (markdown):
+  - `admin-backoffice` — roles, tables, and an append-only audit log for admin software
   - `audio-reactive-visuals`
   - `installable-pwa`
   - `iphone-safari-touch-haptics`
+  - `payments-test-mode` — test-mode Stripe Checkout, webhooks, and refunds
+  - `ship-whole-app` — a safe Cloudflare release, with a way to undo it
   - `stylized-water-sky-weather`
   - `swiftui-home-widgets`
   - `thinking-orbs` — dotted AI thinking and loading indicators (web or SwiftUI)
