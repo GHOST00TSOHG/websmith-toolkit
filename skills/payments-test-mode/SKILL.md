@@ -15,9 +15,20 @@ Use **Stripe-hosted Checkout only**, and **test keys only**, until the owner exp
 
 Fulfill from the webhook, not from the success page. Verify the signature against the **raw request body** (`await request.text()` on Workers). Signing secrets differ per endpoint and between test and live. Default tolerance is 5 minutes. Ignore `v0` signatures. During a secret roll, accept the event if any `v1` signature matches.
 
-`constructEventAsync` and `Stripe.createSubtleCryptoProvider` for Workers were **not found on docs.stripe.com**. Treat them as unconfirmed there; check the [stripe-node README](https://github.com/stripe/stripe-node) before using them. Official Node examples on the Stripe docs use synchronous `constructEvent`.
+On **Cloudflare Workers**, use `constructEventAsync`, not sync `constructEvent`. The official [stripe-node Cloudflare Worker template](https://github.com/stripe-samples/stripe-node-cloudflare-worker-template) (MIT) does this with the raw body:
 
-Docs: [Stripe webhooks](https://docs.stripe.com/webhooks) (Stripe docs).
+```js
+const body = await context.req.text()
+const event = await stripe.webhooks.constructEventAsync(
+  body,
+  signature,
+  STRIPE_WEBHOOK_SECRET
+)
+```
+
+You do not need to pass `Stripe.createSubtleCryptoProvider()` or `httpClient: Stripe.createFetchHttpClient()` when the bundler resolves the `worker` or `workerd` export. That build calls `Stripe.initialize(new WebPlatformFunctions())`, whose defaults are those helpers, and the constructor uses `createDefaultHttpClient()` when no `httpClient` is passed. Those helpers are **not** in the current stripe-node README or on docs.stripe.com; they live in source.
+
+Docs: [Stripe webhooks](https://docs.stripe.com/webhooks) (Stripe docs) and [stripe-node](https://github.com/stripe/stripe-node) (MIT).
 
 ## Fulfillment
 
@@ -54,5 +65,6 @@ Docs: [events resend](https://docs.stripe.com/cli/events/resend) and [trigger](h
 
 - Use live keys, or switch out of hosted Checkout, without the owner's explicit OK.
 - Parse the body as JSON before verifying the signature.
+- Use sync `constructEvent` on Workers.
 - Mark an order paid from the success page or from `async_payment_failed`.
 - Assume Checkout Session metadata appears on the PaymentIntent.

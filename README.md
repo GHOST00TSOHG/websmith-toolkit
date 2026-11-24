@@ -21,6 +21,7 @@ This repository may start private. Raw fetch URLs work for anyone only after it 
   - `stylized-water-sky-weather`
   - `swiftui-home-widgets`
   - `thinking-orbs` — dotted AI thinking and loading indicators (web or SwiftUI)
+  - `web-motion-libraries` — Three.js WebGPU/TSL status, GSAP ScrollTrigger, and the React cleanup hook
 - `LICENSE` — MIT, for the files in this repository
 
 ## How a bot uses an installer

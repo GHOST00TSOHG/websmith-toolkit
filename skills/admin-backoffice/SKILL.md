@@ -16,9 +16,15 @@ Docs: [Better Auth organization plugin](https://better-auth.com/docs/plugins/org
 
 ## Tables
 
-Use [TanStack Table](https://tanstack.com/table) (MIT) for sortable, filterable admin tables. Include a clear empty state and a clear error state, not a blank page. **Server-side paging, sorting, and filtering: to research** against current TanStack Table docs before relying on a pattern.
+Use [TanStack Table](https://tanstack.com/table) (MIT) for sortable, filterable admin tables. Include a clear empty state and a clear error state, not a blank page.
 
-For layout (sidebar, filters, settings, data-table arrangement), use [satnaing/shadcn-admin](https://github.com/satnaing/shadcn-admin) as a **reference only** (MIT; last push Sep 10, 2026). Copy patterns into the project repo and self-host; do not load it from a CDN. Confirm table details against current TanStack Table docs.
+For a new ESM-only project, use **v9** (`@tanstack/react-table` 9.3.x): `useTable` plus a required `features` option from `tableFeatures({...})`. `stockFeatures` restores the v8-like all-in bundle. Do not copy `useReactTable` into a v9 install. The official [v9 migration guide](https://github.com/TanStack/table/blob/main/docs/framework/react/guide/migrating.md) lives in the repo; several `/table/latest/docs/...` URLs on the website 404.
+
+For **server-side** paging, sorting, and filtering, register the matching features (`rowPaginationFeature`, `rowSortingFeature`, `columnFilteringFeature`), omit the client-side row models, and set `manualPagination`, `manualSorting`, and `manualFiltering` (those option names still exist in v9). Pass `rowCount` from the server (or `pageCount: -1` if unknown). Put `pagination`, `sorting`, and filter state in the TanStack Query `queryKey`, and use `placeholderData: keepPreviousData`. The official example is [with-tanstack-query](https://github.com/TanStack/table/tree/main/examples/react/with-tanstack-query) (it uses `globalFilter`; add `columnFilters` yourself). Sort and filter handlers should reset `pageIndex` to 0.
+
+The v8 guides remain useful for those server-side concepts: [pagination](https://tanstack.com/table/v8/docs/guide/pagination), [sorting](https://tanstack.com/table/v8/docs/guide/sorting), and [column-filtering](https://tanstack.com/table/v8/docs/guide/column-filtering). If you must paste v8 snippets unchanged, pin `@tanstack/react-table@8`.
+
+For layout (sidebar, filters, settings, data-table arrangement), use [satnaing/shadcn-admin](https://github.com/satnaing/shadcn-admin) as a **reference only** (MIT; last push Sep 10, 2026). Copy patterns into the project repo and self-host; do not load it from a CDN.
 
 ## Audit log
 
@@ -29,6 +35,7 @@ Keep an append-only log of **who**, **when**, and **what changed**, in an **inse
 ## Don't
 
 - Expose an admin page or mutation without a role check.
+- Mix v8 `useReactTable` code with a v9 install.
 - Delete or update audit-log rows.
 - Put private personal data in a widely visible log.
 - Load the reference dashboard from a CDN.
