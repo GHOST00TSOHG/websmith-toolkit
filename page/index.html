@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https: http://localhost:* http://127.0.0.1:*; worker-src 'self'; manifest-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#040914" />
+    <title>Websmith toolkit</title>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Websmith" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="description" content="Every skill, animation, motion move and installer in the Websmith toolkit, in one plain list." />
+    <script src="./boot.js"></script>
+    <link rel="preload" href="/src/assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/src/styles/main.css" />
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <div class="opening-veil" aria-hidden="true"></div>
+    <div class="backdrop" aria-hidden="true">
+      <div class="backdrop-aurora"></div>
+      <div class="backdrop-stars"></div>
+      <div class="backdrop-grid"></div>
+    </div>
+    <a class="skip-link" href="#main">Skip to the toolkit</a>
+
+    <header class="wrap site-head">
+      <div class="topbar glass" data-build="bar">
+        <a class="brand" href="#top" aria-label="Websmith toolkit, top of page">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M12 2.5 20.5 7.5v9L12 21.5 3.5 16.5v-9z" />
+            <path d="M12 8v8M8 12h8" />
+          </svg>
+          <span>Websmith</span>
+        </a>
+        <span class="topbar-spacer"></span>
+        <div id="theme-toggle-slot" class="toggle-slot"></div>
+        <button class="icon-btn" type="button" id="settings-open" aria-label="Settings" aria-haspopup="dialog">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <path d="M4 7h10M18 7h2M4 17h4M12 17h8" />
+            <circle cx="16" cy="7" r="2" />
+            <circle cx="10" cy="17" r="2" />
+          </svg>
+        </button>
+        <button class="icon-btn power-btn" type="button" id="shutdown" aria-label="Shut down">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M12 3v8" />
+            <path d="M6.3 6.8a8 8 0 1 0 11.4 0" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="main" class="wrap">
+      <section class="hero" id="top" aria-labelledby="hero-title" data-build="hero">
+        <div class="hero-orb" id="hero-orb" aria-hidden="true"></div>
+        <div class="hero-type" id="hero-type">
+          <h1 id="hero-title" class="hero-title">Welcome to Websmith</h1>
+        </div>
+        <form class="name-form" id="name-form">
+          <label class="sr-only" for="name-input">Your name</label>
+          <div class="name-row">
+            <input id="name-input" class="field" type="text" maxlength="24" autocomplete="given-name" spellcheck="false" placeholder="Your name" />
+            <button class="btn btn-primary" type="submit">Save</button>
+          </div>
+        </form>
+        <div class="hero-actions">
+          <button class="btn btn-primary connect-btn" type="button" id="connect-open" aria-haspopup="dialog">
+            <span class="connect-glyph" aria-hidden="true"></span>
+            Connect your AI agent
+          </button>
+          <button class="btn btn-ghost" type="button" id="name-change" hidden>Change name</button>
+        </div>
+      </section>
+
+      <section class="cloth" id="cloth">
+        <div class="cloth-stage" id="cloth-stage"><div class="cloth-rod" aria-hidden="true"></div></div>
+      </section>
+
+      <section class="section" id="toolkit" aria-labelledby="toolkit-title">
+        <div class="section-head">
+          <h2 id="toolkit-title">The toolkit</h2>
+          <p class="label section-count"><strong id="visible-count"><!--@count--></strong> / <!--@count--></p>
+        </div>
+        <!--@filters-->
+        <div class="toolkit-list" id="toolkit-list">
+<!--@list-->
+        </div>
+        <div class="empty" id="empty" hidden>
+          <p>Nothing matches that.</p>
+        </div>
+      </section>
+    </main>
+
+    <div class="power-screen" id="power-screen" hidden>
+      <div class="power-core">
+        <svg class="power-hex" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true">
+          <path d="M12 2.5 20.5 7.5v9L12 21.5 3.5 16.5v-9z" />
+          <path d="M12 8v8M8 12h8" />
+        </svg>
+      </div>
+      <button class="wake-btn" type="button" id="wake">Wake</button>
+    </div>
+
+    <div class="sync-status glass" id="sync-status" role="status" data-state="ok">
+      <span class="sync-dot" aria-hidden="true"></span>
+      <span class="sync-word">Connected</span>
+      <time class="sync-time label" id="sync-time" data-sha="<!--@sha-->"></time>
+    </div>
+
+    <footer class="footer wrap">
+      <p id="privacy-note">Your data stays on this device. This page only talks to the webhook you paste. No analytics, no cookies, no tracking.</p>
+      <p>Dotted orbs: ThinkingOrbs by Jakub Antalik (MIT). Fonts: Space Grotesk and JetBrains Mono (OFL). Page and toolkit: MIT.</p>
+    </footer>
+  </body>
+</html>

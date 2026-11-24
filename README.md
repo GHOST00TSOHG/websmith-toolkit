@@ -11,6 +11,7 @@ This repository may start private. Raw fetch URLs work for anyone only after it 
 - `install/` — installers and the Xcode checklist
 - `motion/` — Remotion motion-graphics kit (see `motion/PLAYBOOK.md`)
 - `animations/thinking-orbs/` — vendored ThinkingOrbs engine, demo, and how-to
+- `page/` — the Websmith page: this toolkit as one browsable list, built for GitHub Pages (see `page/README.md`)
 - `kits/` — five learning kits (VFX, web UI, animation, bots, paper pop-up world) with reference code and roadmaps; see `kits/README.md`
 - `skills/` — portable builder skills (markdown):
   - `admin-backoffice` — roles, tables, and an append-only audit log for admin software

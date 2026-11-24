@@ -1,0 +1,30 @@
+{
+  "name": "websmith-page",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Static showcase page for the websmith-toolkit",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "tsx scripts/build-manifest.ts && tsc --noEmit -p tsconfig.json && vite build",
+    "preview": "node scripts/serve-subpath.mjs dist /",
+    "manifest": "tsx scripts/build-manifest.ts",
+    "check": "tsx scripts/build-manifest.ts --check && tsc --noEmit -p tsconfig.json && eslint . && tsx scripts/check-repo.ts && node scripts/contrast.mjs && tsx scripts/check-licenses.ts && tsx scripts/test-migrate.ts",
+    "check:dist": "tsx scripts/check-dist.ts",
+    "test": "npm run build && tsx scripts/check-dist.ts && playwright test"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@eslint/js": "^10.0.1",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "@fontsource-variable/space-grotesk": "^5.3.0",
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^26.6.6",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.15.0",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.74.0",
+    "vite": "^8.3.8"
+  }
+}

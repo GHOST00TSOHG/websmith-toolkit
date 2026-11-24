@@ -1,0 +1,112 @@
+/* Design tokens. Colour pairs are checked for WCAG AA by scripts/contrast.mjs (part of `npm run check`).
+   Motion: ONE easing curve (--ease) for everything that moves, and ONE spring (--spring) for the few moments
+   that should overshoot (a pop, a knob landing). JS uses the same curve from src/engine/motion.ts. */
+:root {
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.5625rem;
+  --fs-2xl: clamp(1.6rem, 5vw, 2.25rem);
+  --font-ui: "Space Grotesk", "Space Grotesk Fallback", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "JetBrains Mono Fallback", ui-monospace, monospace;
+
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 72px;
+  --sp-9: 112px;
+
+  --r-chip: 12px;
+  --r-card: 20px;
+  --r-sheet: 26px;
+  --r-pill: 999px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --spring: linear(0, 0.135, 0.417, 0.708, 0.933, 1.067, 1.122, 1.121, 1.091, 1.053, 1.02, 0.998, 0.987, 0.984, 0.987, 0.991, 0.996, 0.999, 1.001, 1.002, 1.002, 1.001, 1.001, 1, 1);
+  --t-1: 180ms;
+  --t-2: 320ms;
+  --t-3: 560ms;
+  --t-4: 900ms;
+
+  --page-pad: clamp(14px, 4vw, 40px);
+  --page-max: 1240px;
+  --tap: 44px;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #040914;
+  --bg-2: #071228;
+  --surface: #0a1428;
+  --surface-2: #0f1d38;
+  --text: #eaf3ff;
+  --text-dim: #a3b8d8;
+  --line: #4de3ff;
+  --neon: #5b8cff;
+  --ok: #46e6b0;
+  --warn: #ffc56b;
+  --danger: #ff7a98;
+  --focus: #8af3ff;
+  --on-neon: #ffffff;
+  --neon-fill: #2f5be0;
+  --glow: rgb(77 227 255 / 38%);
+  --glow-2: rgb(91 140 255 / 30%);
+  --decor: rgb(77 227 255 / 40%);
+  --rim: rgb(120 200 255 / 22%);
+  --rim-hi: rgb(160 230 255 / 55%);
+  --glass-a: rgb(90 170 255 / 10%);
+  --glass-b: rgb(40 80 200 / 4%);
+  --glass-fill: rgb(10 22 46 / 62%);
+  --grid-minor: rgb(77 227 255 / 5%);
+  --grid-major: rgb(77 227 255 / 11%);
+  --shadow: 0 18px 50px rgb(0 0 0 / 50%);
+  --accent-skill: #4de3ff;
+  --accent-animation: #a9c1ff;
+  --accent-motion: #7d9dff;
+  --accent-installer: #5ff2d6;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+  --bg: #eaf2fc;
+  --bg-2: #dfeafa;
+  --surface: #ffffff;
+  --surface-2: #e8f0fb;
+  --text: #0a1a36;
+  --text-dim: #3a4f72;
+  --line: #1747c9;
+  --neon: #1747c9;
+  --ok: #08704a;
+  --warn: #8a5200;
+  --danger: #b3123a;
+  --focus: #1747c9;
+  --on-neon: #ffffff;
+  --neon-fill: #1747c9;
+  --glow: rgb(23 71 201 / 22%);
+  --glow-2: rgb(0 160 210 / 18%);
+  --decor: #0097c2;
+  --rim: rgb(23 71 201 / 22%);
+  --rim-hi: rgb(23 71 201 / 50%);
+  --glass-a: rgb(255 255 255 / 80%);
+  --glass-b: rgb(214 230 255 / 60%);
+  --glass-fill: rgb(255 255 255 / 72%);
+  --grid-minor: rgb(23 71 201 / 6%);
+  --grid-major: rgb(23 71 201 / 13%);
+  --shadow: 0 16px 40px rgb(23 71 201 / 14%);
+  --accent-skill: #0a6ea8;
+  --accent-animation: #3d55c9;
+  --accent-motion: #1747c9;
+  --accent-installer: #08705f;
+}
+
+/* Reduced motion: movement becomes calm cross-fades. Durations stay so state changes still read. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --spring: var(--ease);
+  }
+}

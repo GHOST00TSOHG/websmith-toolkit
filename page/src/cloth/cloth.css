@@ -1,0 +1,99 @@
+/* The silk banner: the page's centerpiece, right below the hero. Full-bleed on phones (it runs past
+   the page margins to the screen edges), wide and tall on desktops. The stage reserves its space up
+   front (no layout shift when the lazy module arrives). */
+.cloth {
+  margin: 0 auto var(--sp-8);
+}
+.cloth-stage {
+  position: relative;
+  width: min(100%, 1180px);
+  height: clamp(380px, 46vw, 600px);
+  margin-inline: auto;
+}
+.cloth-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* Vertical swipes still scroll the page; taps and sideways drags push the cloth. */
+  touch-action: pan-y;
+  cursor: grab;
+}
+.cloth-rod {
+  position: absolute;
+  top: calc(7% - 4px);
+  left: 4%;
+  right: 4%;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #cfe6ff, #5f86c9 55%, #23396b);
+  box-shadow:
+    0 0 14px rgb(77 227 255 / 45%),
+    0 2px 6px rgb(0 0 0 / 35%);
+  z-index: 1;
+  pointer-events: none;
+}
+.cloth-rod::before,
+.cloth-rod::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffffff, #7fb2ff 45%, #1e3c7a);
+}
+.cloth-rod::before {
+  left: -7px;
+}
+.cloth-rod::after {
+  right: -7px;
+}
+[data-theme="light"] .cloth-rod {
+  background: linear-gradient(180deg, #ffffff, #9db7e6 55%, #4a68a8);
+  box-shadow:
+    0 0 10px rgb(29 85 230 / 25%),
+    0 2px 6px rgb(10 30 80 / 25%);
+}
+.cloth-switch {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+@media (max-width: 640px) {
+  .cloth-stage {
+    /* Full-bleed by cancelling the page padding (not 100vw, which counts a scrollbar and can overflow). */
+    width: auto;
+    height: min(118vw, 64svh);
+    margin-inline: calc(-1 * var(--page-pad));
+  }
+  .cloth-rod {
+    left: 3%;
+    right: 3%;
+  }
+}
+/* Still fallback when the GPU context is lost: a woven panel under the rod. */
+.cloth-stage.cloth-static::after {
+  content: "";
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 7%;
+  height: 80%;
+  border-radius: 2px;
+  background:
+    repeating-linear-gradient(0deg, rgb(77 227 255 / 22%) 0 1px, transparent 1px 40px),
+    repeating-linear-gradient(90deg, rgb(77 227 255 / 22%) 0 1px, transparent 1px 40px),
+    repeating-linear-gradient(45deg, rgb(255 255 255 / 4%) 0 2px, transparent 2px 4px),
+    #0a1736;
+}
+[data-theme="light"] .cloth-stage.cloth-static::after {
+  background:
+    repeating-linear-gradient(0deg, rgb(29 85 230 / 25%) 0 1px, transparent 1px 40px),
+    repeating-linear-gradient(90deg, rgb(29 85 230 / 25%) 0 1px, transparent 1px 40px),
+    repeating-linear-gradient(45deg, rgb(10 30 80 / 5%) 0 2px, transparent 2px 4px),
+    #d6e3fb;
+}

@@ -1,0 +1,18 @@
+ThinkingOrbs in this folder vendors third-party MIT code.
+
+thinking-orbs 0.3.2 (the canvas / React engine and the nine designs)
+  https://github.com/Jakubantalik/thinking-orbs
+  npm: thinking-orbs@0.3.2
+  Copyright (c) 2026 Jakub Antalik
+  MIT License — see LICENSE-thinking-orbs and vendor/thinking-orbs-0.3.2/LICENSE
+
+ThinkingOrbs (the SwiftUI port of those designs and that engine)
+  https://github.com/haplollc/ThinkingOrbs
+  Copyright (c) 2026 Haplo LLC
+  Copyright (c) 2026 Jakub Antalik (the original thinking-orbs designs and engine)
+  MIT License — see LICENSE-ThinkingOrbs
+
+The files this toolkit adds in this folder (demo.html, README.md, HOW-TO-MAKE.md,
+NOTICE, and the IIFE wrapper vendor/thinking-orbs-engine.js) are MIT under the
+repository LICENSE and include or depend on the works above. Keep the copyright
+notices and license text when you copy this code.

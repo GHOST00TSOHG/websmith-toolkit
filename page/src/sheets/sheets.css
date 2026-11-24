@@ -1,0 +1,148 @@
+/* Sheets (first run, Settings). Lazy: loaded with the sheet code. Solid fills only: no backdrop blur, no
+   filters, no animation (the iPhone GPU budget, and no new motion). */
+.sheet {
+  width: min(100% - 24px, 480px);
+  max-height: min(100% - 24px, 820px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: var(--sp-5);
+  border-radius: var(--r-sheet);
+  border: 1px solid var(--rim-hi);
+  background: var(--bg-2);
+  color: var(--text);
+}
+.sheet::backdrop {
+  background: rgb(2 6 16 / 70%);
+}
+.sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-3);
+}
+.sheet-head h2 {
+  font-size: var(--fs-xl);
+}
+.sheet-body {
+  display: grid;
+  gap: var(--sp-4);
+}
+.sheet-section {
+  display: grid;
+  gap: var(--sp-3);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--rim);
+}
+.sheet-section:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+.sheet-section h3 {
+  font-size: var(--fs-lg);
+}
+.sheet p {
+  margin: 0;
+}
+.sheet-note {
+  color: var(--text-dim);
+  font-size: var(--fs-sm);
+}
+.sheet-field {
+  display: grid;
+  gap: var(--sp-1);
+}
+.sheet-field label,
+.sheet legend {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+}
+.sheet fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: grid;
+  gap: var(--sp-2);
+}
+.sheet-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+.sheet-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: var(--tap);
+  padding: 0 var(--sp-4);
+  border-radius: var(--r-chip);
+  border: 1px solid var(--rim-hi);
+  background: var(--surface);
+  cursor: pointer;
+}
+.sheet-choice:has(input:checked) {
+  border-color: var(--line);
+}
+.sheet-choice input {
+  accent-color: var(--line);
+  margin: 0;
+}
+.sheet-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+.sheet-row-end {
+  justify-content: flex-end;
+}
+.sheet-status {
+  min-height: 1.4em;
+  color: var(--text-dim);
+  font-size: var(--fs-sm);
+}
+.sheet-status[data-tone="error"] {
+  color: var(--danger);
+}
+.sheet-code {
+  display: block;
+  margin: 0;
+  padding: var(--sp-3);
+  border-radius: var(--r-chip);
+  border: 1px solid var(--rim);
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  user-select: all;
+}
+.sheet textarea.field {
+  min-height: 88px;
+  padding: var(--sp-3) var(--sp-4);
+  font-family: var(--font-mono);
+  font-size: 16px;
+  resize: vertical;
+}
+.sheet-found {
+  display: grid;
+  gap: var(--sp-2);
+  padding: var(--sp-3);
+  border-radius: var(--r-chip);
+  border: 1px solid var(--rim-hi);
+  background: var(--surface);
+}
+.sheet-states {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--sp-1);
+  font-size: var(--fs-sm);
+}
+.btn-danger {
+  color: var(--danger);
+  border-color: color-mix(in srgb, var(--danger) 55%, var(--rim-hi));
+}
+.sheet .btn:hover {
+  transform: none;
+}

@@ -1,0 +1,191 @@
+{
+  "skill-thinking-orbs": [
+    "anim-thinking-orbs"
+  ],
+  "anim-thinking-orbs": [
+    "skill-web-motion-libraries"
+  ],
+  "skill-web-motion-libraries": [
+    "skill-stylized-water-sky-weather",
+    "kit-playbook"
+  ],
+  "skill-stylized-water-sky-weather": [
+    "skill-audio-reactive-visuals"
+  ],
+  "skill-audio-reactive-visuals": [
+    "kit-audio"
+  ],
+  "kit-audio": [
+    "kit-playbook"
+  ],
+  "kit-playbook": [
+    "kit-lottie",
+    "kit-qa",
+    "kit-preset"
+  ],
+  "kit-preset": [
+    "kit-demo-film"
+  ],
+  "kit-qa": [
+    "kit-html-render"
+  ],
+  "skill-installable-pwa": [
+    "skill-iphone-safari-touch-haptics"
+  ],
+  "skill-iphone-safari-touch-haptics": [
+    "skill-swiftui-home-widgets"
+  ],
+  "skill-admin-backoffice": [
+    "skill-payments-test-mode"
+  ],
+  "skill-payments-test-mode": [
+    "skill-ship-whole-app"
+  ],
+  "move-splittext": [
+    "move-maskreveal",
+    "move-rollingword"
+  ],
+  "move-pathdraw": [
+    "move-morph"
+  ],
+  "move-counter": [
+    "move-highlight"
+  ],
+  "move-parallax": [
+    "move-pinnedscrub"
+  ],
+  "move-pinnedscrub": [
+    "move-horizontalrail"
+  ],
+  "move-stackcards": [
+    "move-parallax"
+  ],
+  "transition-cut": [
+    "transition-crossfade"
+  ],
+  "transition-crossfade": [
+    "transition-push"
+  ],
+  "transition-push": [
+    "transition-pushup"
+  ],
+  "transition-wipe": [
+    "transition-mask"
+  ],
+  "transition-cameradive": [
+    "transition-zoomout"
+  ],
+  "transition-matchcut": [
+    "transition-whip"
+  ],
+  "transition-whip": [
+    "transition-slideover"
+  ],
+  "install-colmap-brush": [
+    "install-rust"
+  ],
+  "install-rust": [
+    "install-xcode"
+  ],
+  "install-beanfx": [
+    "skill-thinking-orbs"
+  ],
+  "skill-vfx-state-of-the-art-2026": [
+    "skill-fluid-simulation"
+  ],
+  "skill-fluid-simulation": [
+    "skill-xpbd-and-constraint-solvers"
+  ],
+  "skill-xpbd-and-constraint-solvers": [
+    "skill-sdf-raymarching-and-shaders"
+  ],
+  "skill-sdf-raymarching-and-shaders": [
+    "skill-procedural-fx-patterns"
+  ],
+  "skill-procedural-fx-patterns": [
+    "skill-compositing-color-and-hdr"
+  ],
+  "skill-compositing-color-and-hdr": [
+    "skill-advanced-character-motion"
+  ],
+  "skill-advanced-character-motion": [
+    "skill-neural-and-ai-vfx"
+  ],
+  "skill-neural-and-ai-vfx": [
+    "skill-gpu-and-performance"
+  ],
+  "skill-web-platform-state-2026": [
+    "skill-modern-css-architecture"
+  ],
+  "skill-modern-css-architecture": [
+    "skill-design-systems-and-tokens"
+  ],
+  "skill-design-systems-and-tokens": [
+    "skill-accessibility-engineering"
+  ],
+  "skill-accessibility-engineering": [
+    "skill-frontend-architecture-and-frameworks"
+  ],
+  "skill-frontend-architecture-and-frameworks": [
+    "skill-performance-and-core-web-vitals"
+  ],
+  "skill-performance-and-core-web-vitals": [
+    "skill-motion-and-interaction-design"
+  ],
+  "skill-motion-and-interaction-design": [
+    "skill-ai-native-ui-and-agents",
+    "skill-web-motion-libraries"
+  ],
+  "skill-ai-native-ui-and-agents": [
+    "skill-webgpu-and-3d-web"
+  ],
+  "skill-webgpu-and-3d-web": [
+    "skill-progressive-enhancement-and-legacy-devices"
+  ],
+  "skill-animation-principles": [
+    "skill-interpolation-and-easing-math"
+  ],
+  "skill-interpolation-and-easing-math": [
+    "skill-procedural-and-physics-animation"
+  ],
+  "skill-procedural-and-physics-animation": [
+    "skill-blender-python-scripting"
+  ],
+  "skill-blender-python-scripting": [
+    "skill-rendering-and-encoding"
+  ],
+  "skill-advanced-python": [
+    "skill-async-bot-architecture"
+  ],
+  "skill-async-bot-architecture": [
+    "skill-bot-design-patterns"
+  ],
+  "skill-bot-design-patterns": [
+    "skill-llm-integration"
+  ],
+  "skill-llm-integration": [
+    "skill-production-ops"
+  ],
+  "skill-production-ops": [
+    "skill-testing-and-debugging"
+  ],
+  "skill-style-breakdown": [
+    "skill-papercraft-look"
+  ],
+  "skill-papercraft-look": [
+    "skill-proximity-popup-system"
+  ],
+  "skill-proximity-popup-system": [
+    "skill-paper-particles-and-secondary-motion"
+  ],
+  "skill-paper-particles-and-secondary-motion": [
+    "skill-diorama-camera-and-tilt-shift",
+    "skill-procedural-fx-patterns"
+  ],
+  "skill-diorama-camera-and-tilt-shift": [
+    "skill-building-it-for-the-web"
+  ],
+  "skill-building-it-for-the-web": [
+    "skill-building-it-in-blender"
+  ]
+}

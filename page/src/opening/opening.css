@@ -1,0 +1,40 @@
+/* The opening. boot.js sets html.opening before first paint, so the blueprint sheet (a static veil: the
+   page colour and its grid, no animation, no filter) is up with the very first frame while the real page
+   paints underneath. The opening canvas then takes over the sheet (html.opening-live) and opens it.
+   If the script never runs, the veil steps aside on its own. */
+.opening-veil,
+.opening-canvas {
+  display: none;
+}
+html.opening .opening-veil {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  background-color: var(--bg);
+  animation: veil-safety var(--t-3) var(--ease) 4s forwards;
+}
+html.opening-live .opening-veil {
+  display: none;
+}
+html.opening .opening-canvas {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 61;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+@keyframes veil-safety {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+/* Safe mode: the page as is, at once. */
+html.safe-mode .opening-veil,
+html.safe-mode .opening-canvas {
+  display: none !important;
+}

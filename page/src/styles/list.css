@@ -1,0 +1,350 @@
+/* Toolbar (search, kit and type chips) and the toolkit list: a dense, calm file-manager list view.
+   Header row with column titles, compact striped rows, a flat selection fill on hover or focus. No motion. */
+.toolbar {
+  display: grid;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+  margin-bottom: var(--sp-4);
+  border-radius: var(--r-sheet);
+}
+html:not(.js) .toolbar {
+  display: none;
+}
+/* The toolbar scrolls over a fixed backdrop, so it gets a dense fill instead of a live blur. */
+.toolbar.glass {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background:
+    linear-gradient(160deg, var(--glass-a), var(--glass-b) 60%),
+    color-mix(in srgb, var(--bg) 88%, var(--glass-fill));
+}
+
+.field {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 var(--sp-4);
+  font: inherit;
+  font-size: 16px; /* 16px stops iPhone Safari zooming in on focus */
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--rim-hi);
+  border-radius: var(--r-chip);
+}
+.field::placeholder {
+  color: var(--text-dim);
+}
+.field:hover,
+.field:focus-visible {
+  border-color: var(--line);
+}
+.field:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 1px;
+}
+
+.search {
+  position: relative;
+}
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  translate: 0 -50%;
+  color: var(--text-dim);
+  pointer-events: none;
+}
+.search-input {
+  padding-left: 42px;
+}
+
+.rail {
+  display: flex;
+  gap: var(--sp-2);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  margin-inline: calc(var(--sp-3) * -1);
+  padding: 2px var(--sp-3);
+}
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+.chip {
+  position: relative;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--rim-hi);
+  border-radius: var(--r-pill);
+  touch-action: manipulation;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.chip:hover {
+  border-color: var(--line);
+}
+.chip:active {
+  background: var(--surface-2);
+}
+.chip[data-on="true"] {
+  color: var(--on-neon);
+  background: var(--neon-fill);
+  border-color: var(--neon-fill);
+}
+.chip:has(.chip-switch:focus-visible) {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+/* The real switch covers the whole chip, invisible: a tap lands on it directly (iOS haptic tick). */
+.chip-switch {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.chip-count {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  opacity: 0.75;
+}
+.toolbar-foot:has(#clear-filters[hidden]) {
+  display: none;
+}
+.btn-ghost {
+  background: transparent;
+  border-color: var(--rim-hi);
+}
+
+/* ---------- The list ---------- */
+.icon-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+.toolkit-list {
+  --cols: minmax(170px, 2fr) minmax(0, 5fr) minmax(110px, 1.3fr);
+  --row-h: 26px;
+  font-size: 13px;
+  line-height: 18px;
+  border-top: 1px solid var(--rim);
+  border-bottom: 1px solid var(--rim);
+  padding-bottom: var(--sp-1);
+}
+.list-head,
+.row-line {
+  display: grid;
+  grid-template-columns: var(--cols);
+  column-gap: var(--sp-4);
+  align-items: center;
+  padding-inline: var(--sp-2);
+}
+.list-head {
+  min-height: 28px;
+  margin-bottom: var(--sp-1);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--rim);
+}
+/* Thin column dividers in the header, like a file manager's. */
+.list-head > span + span {
+  border-left: 1px solid var(--rim);
+  margin-left: calc(var(--sp-2) * -1);
+  padding-left: calc(var(--sp-2) - 1px);
+}
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.row[hidden] {
+  display: none;
+}
+.row-line {
+  position: relative;
+  min-height: var(--row-h);
+  padding-block: 4px;
+  border-radius: 6px;
+  color: var(--text);
+}
+.row.alt > .row-line {
+  background: color-mix(in srgb, var(--line) 6%, transparent);
+}
+/* The name is the row's button; its hit area stretches over the whole line. */
+.row-open {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-width: 0;
+  padding: 0;
+  font: inherit;
+  font-weight: 500;
+  color: inherit;
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.row-open::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+.row-open:focus-visible {
+  outline: none;
+}
+.row-icon {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.row-name {
+  min-width: 0;
+}
+.row-desc,
+.row-kind {
+  color: var(--text-dim);
+}
+.row-kind {
+  font-size: 12px;
+}
+
+/* Selection: the row under the pointer, with keyboard focus, or open gets one flat fill. Nothing moves. */
+@media (hover: hover) {
+  .row-line:hover {
+    background: color-mix(in srgb, var(--neon-fill) 22%, transparent);
+  }
+}
+.row-line:has(.row-open[aria-expanded="true"]),
+.row-line:has(.row-open:focus-visible),
+.row-line:active {
+  color: var(--on-neon);
+  background: var(--neon-fill);
+}
+.row-line:has(.row-open[aria-expanded="true"]) :is(.row-desc, .row-kind),
+.row-line:has(.row-open:focus-visible) :is(.row-desc, .row-kind),
+.row-line:active :is(.row-desc, .row-kind) {
+  color: var(--on-neon);
+}
+.row-line:has(.row-open[aria-expanded="true"]) .row-icon,
+.row-line:has(.row-open:focus-visible) .row-icon,
+.row-line:active .row-icon {
+  stroke: currentColor;
+}
+.row-line:has(.row-open:focus-visible) {
+  outline: 2px solid var(--focus);
+  outline-offset: 1px;
+}
+
+/* Details: indented under the row's name, opened by its button. */
+.row-more {
+  display: grid;
+  gap: var(--sp-2);
+  margin: var(--sp-1) 0 var(--sp-2) calc(var(--sp-2) + 24px);
+  padding: var(--sp-3);
+  border-radius: var(--r-chip);
+  background: var(--surface-2);
+  border: 1px solid var(--rim);
+}
+.row-more[hidden] {
+  display: none;
+}
+.row-more p {
+  margin: 0;
+}
+.row-more .label {
+  color: var(--text-dim);
+}
+.row-more pre {
+  margin: 0;
+  max-height: 220px;
+  overflow: auto;
+  padding: var(--sp-3);
+  border-radius: var(--r-chip);
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  line-height: 1.5;
+}
+.detail-list {
+  margin: 0;
+  padding-left: var(--sp-5);
+}
+.row-source {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  color: var(--line);
+  font-weight: 600;
+  text-underline-offset: 3px;
+}
+.row-source:hover {
+  text-decoration-thickness: 2px;
+}
+.row-source:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.empty {
+  padding: var(--sp-7) var(--sp-4);
+  text-align: center;
+  color: var(--text-dim);
+}
+
+/* Phone: icon and name on top, the description wraps under the name, the kind stays small on the right.
+   Every row is a full touch target (44px or more). */
+@media (max-width: 640px) {
+  .list-head {
+    display: none;
+  }
+  .row-line {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "name kind" "desc desc";
+    row-gap: 2px;
+    min-height: var(--tap);
+    padding: 7px var(--sp-2);
+  }
+  .row-open {
+    grid-area: name;
+    font-size: 15px;
+    line-height: 20px;
+  }
+  .row-desc {
+    grid-area: desc;
+    padding-left: 24px;
+    font-size: 13px;
+    line-height: 18px;
+  }
+  .row-kind {
+    grid-area: kind;
+    font-size: 11px;
+  }
+  .row-more {
+    margin-left: var(--sp-2);
+  }
+  .chip {
+    min-height: var(--tap);
+  }
+}

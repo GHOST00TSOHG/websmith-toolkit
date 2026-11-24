@@ -1,0 +1,67 @@
+# STAGED, NOT ACTIVE. Go-live step: move this file to .github/workflows/websmith-page.yml
+# (git mv page/deploy/websmith-page.yml .github/workflows/websmith-page.yml) in the same change that
+# merges the page, from an account allowed to edit workflows. It was kept here because the build
+# machine's GitHub login cannot push workflow files.
+# Builds the Websmith page (page/) and publishes it to GitHub Pages.
+# Dormant until the repository owner turns on Pages (Settings > Pages > Source: GitHub Actions):
+# every job is gated on `has_pages`, so pushes before that do nothing and leave no failing runs.
+name: Websmith page
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "page/**"
+      - "skills/**"
+      - "kits/**"
+      - "animations/**"
+      - "install/**"
+      - "motion/**"
+      - "README.md" # the installer table the list reads
+      - ".github/workflows/websmith-page.yml"
+      - "page/deploy/websmith-page.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.event.repository.has_pages
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: page
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0 # the list's dates come from git history; a shallow clone fails the build on purpose
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: page/package-lock.json
+      - run: npm ci
+      - run: npm run check
+      - run: npm run build
+      - run: npm run check:dist
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: page/dist
+
+  deploy:
+    if: github.event.repository.has_pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

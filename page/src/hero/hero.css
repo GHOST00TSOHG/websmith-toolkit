@@ -1,0 +1,85 @@
+/* Hero: the orb front and centre, the greeting under it, then the name field and Connect. */
+.hero-orb {
+  --orb: min(84vw, 46svh, 420px);
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--orb);
+  height: var(--orb);
+}
+/* Bloom behind the orb: a still radial glow (no filter, no animation). It reaches 22% past the orb but
+   never past the screen edge: a box wider than the viewport makes the page pan sideways on iPhone
+   Safari (body overflow-x does not stop that), which pushed every centered thing off center. */
+.hero-orb::before {
+  content: "";
+  position: absolute;
+  inset: -22% max(-22%, calc((var(--orb) - 100vw) / 2));
+  background: radial-gradient(circle closest-side, var(--glow) 0%, var(--glow-2) 45%, transparent 100%);
+  pointer-events: none;
+}
+.orb-button {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  transition: transform var(--t-3) var(--spring);
+}
+.orb-button:hover {
+  transform: scale(1.03);
+}
+.orb-canvas {
+  display: block;
+}
+.hero-type {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  width: 100%;
+  touch-action: pan-y;
+}
+.hero-title {
+  font-size: clamp(2.6rem, 11vw, 5.5rem);
+  letter-spacing: -0.03em;
+  color: var(--text);
+  text-shadow: 0 0 30px var(--glow);
+}
+.name-form {
+  width: min(100%, 420px);
+}
+.name-form[hidden] {
+  display: none;
+}
+.name-row {
+  display: flex;
+  gap: var(--sp-2);
+}
+.name-row .btn {
+  flex: none;
+  min-width: 88px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-3);
+}
+.connect-btn {
+  min-height: 56px;
+  padding: 0 var(--sp-5) 0 var(--sp-4);
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: var(--r-pill);
+  overflow: hidden;
+}
+.connect-glyph {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffffff, #9ff3ff 35%, #4de3ff 60%, transparent 62%);
+  box-shadow: 0 0 12px #9ff3ff;
+}

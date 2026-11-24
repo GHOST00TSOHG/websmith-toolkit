@@ -1,0 +1,90 @@
+/* The corner status ("Connected" pill). */
+/* ---------- Websmith connected ---------- */
+.sync-status {
+  position: fixed;
+  left: calc(env(safe-area-inset-left, 0px) + var(--sp-3));
+  bottom: calc(env(safe-area-inset-bottom, 0px) + var(--sp-3));
+  z-index: 25;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: 36px;
+  padding: 0 var(--sp-3);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+}
+.sync-dot {
+  position: relative;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--ok);
+  box-shadow: 0 0 8px var(--ok), 0 0 16px color-mix(in srgb, var(--ok) 60%, transparent);
+}
+.sync-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--ok);
+  opacity: 0;
+}
+.pulsing .sync-dot::after {
+  animation: dot-ring 1.2s var(--ease) 3;
+}
+.sync-time {
+  color: var(--text-dim);
+}
+@keyframes dot-ring {
+  from {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(3.4);
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pulsing .sync-dot::after {
+    animation: none;
+  }
+}
+@media (max-width: 640px) {
+  .sync-status {
+    min-height: 30px;
+    padding: 0 10px;
+    gap: 6px;
+    font-size: 12px;
+  }
+}
+/* Tucked: while you scroll (and while cards are under it) the whole pill fades and sinks out of the
+   way. Nothing is left in the margin: a lone dot used to sit beside the full-bleed banner. Only opacity
+   and transform animate. */
+.sync-status {
+  background: color-mix(in srgb, var(--bg) 62%, transparent);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  cursor: default;
+  transition:
+    opacity var(--t-3) var(--ease),
+    transform var(--t-3) var(--ease),
+    visibility 0s;
+}
+.sync-status.tucked {
+  opacity: 0;
+  transform: translateY(12px);
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity var(--t-2) var(--ease),
+    transform var(--t-2) var(--ease),
+    visibility 0s var(--t-2);
+}
+@media (prefers-reduced-motion: reduce) {
+  .sync-status,
+  .sync-status.tucked {
+    transform: none;
+  }
+}

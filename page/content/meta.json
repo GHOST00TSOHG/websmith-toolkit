@@ -1,0 +1,334 @@
+{
+  "tags": {
+    "skill-admin-backoffice": [
+      "web",
+      "backend"
+    ],
+    "skill-audio-reactive-visuals": [
+      "audio",
+      "web",
+      "3d"
+    ],
+    "skill-installable-pwa": [
+      "web",
+      "ios"
+    ],
+    "skill-iphone-safari-touch-haptics": [
+      "web",
+      "ios",
+      "touch"
+    ],
+    "skill-payments-test-mode": [
+      "backend",
+      "payments"
+    ],
+    "skill-ship-whole-app": [
+      "backend",
+      "release"
+    ],
+    "skill-stylized-water-sky-weather": [
+      "3d",
+      "web"
+    ],
+    "skill-swiftui-home-widgets": [
+      "ios"
+    ],
+    "skill-thinking-orbs": [
+      "ai",
+      "web",
+      "ios"
+    ],
+    "skill-web-motion-libraries": [
+      "motion",
+      "web",
+      "3d"
+    ],
+    "anim-thinking-orbs": [
+      "ai",
+      "web"
+    ],
+    "move-splittext": [
+      "motion",
+      "text"
+    ],
+    "move-maskreveal": [
+      "motion",
+      "text"
+    ],
+    "move-morph": [
+      "motion",
+      "shapes"
+    ],
+    "move-pinnedscrub": [
+      "motion",
+      "scroll"
+    ],
+    "move-horizontalrail": [
+      "motion",
+      "scroll"
+    ],
+    "move-parallax": [
+      "motion",
+      "scroll"
+    ],
+    "move-counter": [
+      "motion",
+      "text"
+    ],
+    "move-pathdraw": [
+      "motion",
+      "shapes"
+    ],
+    "move-highlight": [
+      "motion",
+      "text"
+    ],
+    "move-rollingword": [
+      "motion",
+      "text"
+    ],
+    "move-stackcards": [
+      "motion",
+      "layout"
+    ],
+    "transition-cut": [
+      "motion",
+      "transition"
+    ],
+    "transition-crossfade": [
+      "motion",
+      "transition"
+    ],
+    "transition-push": [
+      "motion",
+      "transition"
+    ],
+    "transition-pushup": [
+      "motion",
+      "transition"
+    ],
+    "transition-wipe": [
+      "motion",
+      "transition"
+    ],
+    "transition-mask": [
+      "motion",
+      "transition"
+    ],
+    "transition-cameradive": [
+      "motion",
+      "transition"
+    ],
+    "transition-zoomout": [
+      "motion",
+      "transition"
+    ],
+    "transition-matchcut": [
+      "motion",
+      "transition"
+    ],
+    "transition-whip": [
+      "motion",
+      "transition"
+    ],
+    "transition-slideover": [
+      "motion",
+      "transition"
+    ],
+    "kit-playbook": [
+      "motion",
+      "video"
+    ],
+    "kit-lottie": [
+      "motion",
+      "icons"
+    ],
+    "kit-audio": [
+      "audio",
+      "video"
+    ],
+    "kit-qa": [
+      "video",
+      "quality"
+    ],
+    "kit-html-render": [
+      "video",
+      "web"
+    ],
+    "kit-preset": [
+      "video"
+    ],
+    "kit-demo-film": [
+      "video"
+    ],
+    "install-colmap-brush": [
+      "install",
+      "3d"
+    ],
+    "install-rust": [
+      "install"
+    ],
+    "install-beanfx": [
+      "install",
+      "ai"
+    ],
+    "install-xcode": [
+      "install",
+      "ios"
+    ],
+    "skill-vfx-state-of-the-art-2026": [
+      "vfx",
+      "3d"
+    ],
+    "skill-fluid-simulation": [
+      "vfx",
+      "3d",
+      "shapes"
+    ],
+    "skill-xpbd-and-constraint-solvers": [
+      "vfx",
+      "3d"
+    ],
+    "skill-sdf-raymarching-and-shaders": [
+      "vfx",
+      "3d"
+    ],
+    "skill-procedural-fx-patterns": [
+      "vfx",
+      "3d"
+    ],
+    "skill-compositing-color-and-hdr": [
+      "vfx",
+      "3d",
+      "video"
+    ],
+    "skill-advanced-character-motion": [
+      "vfx",
+      "3d"
+    ],
+    "skill-neural-and-ai-vfx": [
+      "vfx",
+      "3d",
+      "ai"
+    ],
+    "skill-gpu-and-performance": [
+      "vfx",
+      "3d"
+    ],
+    "skill-web-platform-state-2026": [
+      "web"
+    ],
+    "skill-modern-css-architecture": [
+      "web",
+      "layout"
+    ],
+    "skill-design-systems-and-tokens": [
+      "web",
+      "layout"
+    ],
+    "skill-accessibility-engineering": [
+      "web",
+      "quality"
+    ],
+    "skill-frontend-architecture-and-frameworks": [
+      "web"
+    ],
+    "skill-performance-and-core-web-vitals": [
+      "web",
+      "quality"
+    ],
+    "skill-motion-and-interaction-design": [
+      "web",
+      "motion",
+      "transition"
+    ],
+    "skill-ai-native-ui-and-agents": [
+      "web",
+      "ai"
+    ],
+    "skill-webgpu-and-3d-web": [
+      "web",
+      "3d"
+    ],
+    "skill-progressive-enhancement-and-legacy-devices": [
+      "web",
+      "ios"
+    ],
+    "skill-animation-principles": [
+      "motion",
+      "3d"
+    ],
+    "skill-interpolation-and-easing-math": [
+      "motion",
+      "3d"
+    ],
+    "skill-procedural-and-physics-animation": [
+      "motion",
+      "3d"
+    ],
+    "skill-blender-python-scripting": [
+      "motion",
+      "3d"
+    ],
+    "skill-rendering-and-encoding": [
+      "motion",
+      "3d",
+      "video"
+    ],
+    "skill-advanced-python": [
+      "ai",
+      "backend"
+    ],
+    "skill-async-bot-architecture": [
+      "ai",
+      "backend"
+    ],
+    "skill-bot-design-patterns": [
+      "ai",
+      "backend"
+    ],
+    "skill-llm-integration": [
+      "ai",
+      "backend"
+    ],
+    "skill-production-ops": [
+      "ai",
+      "backend",
+      "release"
+    ],
+    "skill-testing-and-debugging": [
+      "ai",
+      "backend",
+      "quality"
+    ],
+    "skill-style-breakdown": [
+      "3d",
+      "motion"
+    ],
+    "skill-papercraft-look": [
+      "3d",
+      "motion"
+    ],
+    "skill-proximity-popup-system": [
+      "3d",
+      "motion"
+    ],
+    "skill-paper-particles-and-secondary-motion": [
+      "3d",
+      "motion"
+    ],
+    "skill-diorama-camera-and-tilt-shift": [
+      "3d",
+      "motion"
+    ],
+    "skill-building-it-for-the-web": [
+      "3d",
+      "motion",
+      "web"
+    ],
+    "skill-building-it-in-blender": [
+      "3d",
+      "motion"
+    ]
+  }
+}

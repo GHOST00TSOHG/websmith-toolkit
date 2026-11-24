@@ -1,0 +1,13 @@
+node_modules/
+dist/
+/vendor/
+/src/generated/
+.DS_Store
+*.log
+.env*
+run_*.out
+.tmp/
+test-results/
+playwright-report/
+run_*.err
+run_*.log
