@@ -11,6 +11,7 @@ This repository may start private. Raw fetch URLs work for anyone only after it 
 - `install/` — installers and the Xcode checklist
 - `motion/` — Remotion motion-graphics kit (see `motion/PLAYBOOK.md`)
 - `animations/thinking-orbs/` — vendored ThinkingOrbs engine, demo, and how-to
+- `kits/` — five learning kits (VFX, web UI, animation, bots, paper pop-up world) with reference code and roadmaps; see `kits/README.md`
 - `skills/` — portable builder skills (markdown):
   - `admin-backoffice` — roles, tables, and an append-only audit log for admin software
   - `audio-reactive-visuals`
@@ -22,6 +23,7 @@ This repository may start private. Raw fetch URLs work for anyone only after it 
   - `swiftui-home-widgets`
   - `thinking-orbs` — dotted AI thinking and loading indicators (web or SwiftUI)
   - `web-motion-libraries` — Three.js WebGPU/TSL status, GSAP ScrollTrigger, and the React cleanup hook
+  - 37 more skills from the five kits, listed by kit in `kits/README.md`
 - `LICENSE` — MIT, for the files in this repository
 
 ## How a bot uses an installer

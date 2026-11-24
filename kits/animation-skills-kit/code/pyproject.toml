@@ -1,0 +1,12 @@
+[project]
+name = "anim"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = ["numpy", "pillow"]
+
+[project.optional-dependencies]
+dev = ["pytest", "matplotlib"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

@@ -1,0 +1,42 @@
+{
+  "semantic": {
+    "$type": "color",
+    "bg": {
+      "$value": "{color.neutral.50}"
+    },
+    "surface": {
+      "$value": "{color.neutral.100}"
+    },
+    "surface-raised": {
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "text": {
+      "$value": "{color.neutral.950}"
+    },
+    "text-muted": {
+      "$value": "{color.neutral.700}"
+    },
+    "border": {
+      "$value": "{color.neutral.200}"
+    },
+    "primary": {
+      "$value": "{color.brand.700}"
+    },
+    "on-primary": {
+      "$value": "{color.brand.50}"
+    },
+    "accent": {
+      "$value": "{color.accent.700}"
+    },
+    "focus": {
+      "$value": "{color.brand.500}"
+    }
+  }
+}

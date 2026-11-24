@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <title>Signal UI — modern web platform showcase</title>
+  <meta name="description" content="A design-token driven page demonstrating 2026 web platform features with progressive enhancement.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site">
+    <div class="wrap">
+      <a class="logo" href="index.html"><span class="logo-mark" aria-hidden="true"></span>Signal UI</a>
+      <nav aria-label="Primary">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="about.html">About</a>
+        <a href="lite.html">Lite</a>
+        <button id="theme-toggle" class="button ghost icon-button" type="button" aria-pressed="false" aria-label="Dark theme">
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="wrap">
+        <h1>Interfaces built on the <span class="gradient-text">platform</span>, not around it.</h1>
+        <p>Design tokens in the DTCG format compile to one stylesheet that serves light and dark themes.
+           Anchor positioning, container queries, view transitions and native dialogs replace most UI libraries.</p>
+        <div style="display:flex;gap:var(--space-3);flex-wrap:wrap">
+          <button class="button" id="open-signup" type="button">Join the beta</button>
+          <button class="button ghost" id="tip-trigger" type="button" popovertarget="tip">What is this?</button>
+        </div>
+        <p id="status" role="status" class="muted"></p>
+        <div id="tip" class="tip" popover>Tooltip placed with CSS anchor positioning. It flips automatically when there is no room. No JavaScript.</div>
+      </div>
+    </section>
+
+    <section aria-labelledby="palettes-h">
+      <div class="wrap">
+        <h2 id="palettes-h">Palettes</h2>
+        <p class="muted" style="margin-block-end:var(--space-6)">Each card is a container: resize the window and cards change layout based on their own width. Selecting a card styles it with <code>:has()</code>.</p>
+        <p id="picked" role="status" class="muted"></p>
+        <div class="grid">
+          <div class="card-host reveal"><article class="card">
+            <div class="swatch" style="background:linear-gradient(135deg,var(--color-brand-300),var(--color-brand-700))"></div>
+            <div class="stack"><h3>Brand</h3><p class="muted">OKLCH hue 285, perceptually even steps.</p>
+              <label class="pick"><input type="checkbox" name="pal" value="brand"> Use brand</label></div>
+          </article></div>
+          <div class="card-host reveal"><article class="card">
+            <div class="swatch" style="background:linear-gradient(135deg,var(--color-accent-300),var(--color-accent-700))"></div>
+            <div class="stack"><h3>Accent</h3><p class="muted">Warm counterpoint, hue 35.</p>
+              <label class="pick"><input type="checkbox" name="pal" value="accent"> Use accent</label></div>
+          </article></div>
+          <div class="card-host reveal"><article class="card">
+            <div class="swatch" style="background:linear-gradient(135deg,var(--color-neutral-200),var(--color-neutral-800))"></div>
+            <div class="stack"><h3>Neutral</h3><p class="muted">Cool grey with a hint of brand hue.</p>
+              <label class="pick"><input type="checkbox" name="pal" value="neutral"> Use neutral</label></div>
+          </article></div>
+        </div>
+        <div class="stack" style="margin-block-start:var(--space-8)">
+          <div class="palette" aria-label="Brand scale" role="img">
+          <div style="background:var(--color-brand-50);color:var(--color-neutral-950)">50</div>
+          <div style="background:var(--color-brand-100);color:var(--color-neutral-950)">100</div>
+          <div style="background:var(--color-brand-200);color:var(--color-neutral-950)">200</div>
+          <div style="background:var(--color-brand-300);color:var(--color-neutral-950)">300</div>
+          <div style="background:var(--color-brand-400);color:var(--color-neutral-950)">400</div>
+          <div style="background:var(--color-brand-500);color:var(--color-neutral-50)">500</div>
+          <div style="background:var(--color-brand-600);color:var(--color-neutral-50)">600</div>
+          <div style="background:var(--color-brand-700);color:var(--color-neutral-50)">700</div>
+          <div style="background:var(--color-brand-800);color:var(--color-neutral-50)">800</div>
+          <div style="background:var(--color-brand-900);color:var(--color-neutral-50)">900</div>
+          <div style="background:var(--color-brand-950);color:var(--color-neutral-50)">950</div>
+          </div>
+          <div class="palette" aria-label="Accent scale" role="img">
+          <div style="background:var(--color-accent-50);color:var(--color-neutral-950)">50</div>
+          <div style="background:var(--color-accent-100);color:var(--color-neutral-950)">100</div>
+          <div style="background:var(--color-accent-200);color:var(--color-neutral-950)">200</div>
+          <div style="background:var(--color-accent-300);color:var(--color-neutral-950)">300</div>
+          <div style="background:var(--color-accent-400);color:var(--color-neutral-950)">400</div>
+          <div style="background:var(--color-accent-500);color:var(--color-neutral-50)">500</div>
+          <div style="background:var(--color-accent-600);color:var(--color-neutral-50)">600</div>
+          <div style="background:var(--color-accent-700);color:var(--color-neutral-50)">700</div>
+          <div style="background:var(--color-accent-800);color:var(--color-neutral-50)">800</div>
+          <div style="background:var(--color-accent-900);color:var(--color-neutral-50)">900</div>
+          <div style="background:var(--color-accent-950);color:var(--color-neutral-50)">950</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="tabs-h">
+      <div class="wrap">
+        <h2 id="tabs-h">Components</h2>
+        <ui-tabs>
+          <div role="tablist" aria-label="Component demos">
+            <button role="tab" id="t1" aria-controls="p1" aria-selected="true" type="button">Form</button>
+            <button role="tab" id="t2" aria-controls="p2" aria-selected="false" type="button">Select</button>
+            <button role="tab" id="t3" aria-controls="p3" aria-selected="false" type="button">Notes</button>
+          </div>
+          <div role="tabpanel" id="p1" aria-labelledby="t1" tabindex="0">
+            <form class="stack" style="max-inline-size:32rem" onsubmit="return false">
+              <label>Email <input type="email" name="email" required autocomplete="email">
+                <span class="hint">Invalid styling appears only after you interact (<code>:user-invalid</code>).</span></label>
+              <label>Message <textarea name="msg" rows="3"></textarea>
+                <span class="hint">Grows with content via <code>field-sizing</code>.</span></label>
+            </form>
+          </div>
+          <div role="tabpanel" id="p2" aria-labelledby="t2" tabindex="0" hidden>
+            <label style="max-inline-size:20rem">Theme accent
+              <select class="fancy" name="accent">
+                <option value="brand">Brand violet</option>
+                <option value="accent">Ember orange</option>
+                <option value="neutral">Slate</option>
+              </select>
+              <span class="hint">Customizable select where supported, a normal select everywhere else.</span>
+            </label>
+          </div>
+          <div role="tabpanel" id="p3" aria-labelledby="t3" tabindex="0" hidden>
+            <p>Tabs use the ARIA Authoring Practices pattern: arrow keys move between tabs, Home and End jump, and only the active tab is in the tab order.</p>
+          </div>
+        </ui-tabs>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="signup" closedby="any" aria-labelledby="signup-h">
+    <h2 id="signup-h">Join the beta</h2>
+    <p class="muted">Native modal dialog: focus is trapped, Escape closes it, and the page behind is inert.</p>
+    <form method="dialog">
+      <label>Name <input type="text" name="name" autocomplete="name"></label>
+      <div style="display:flex;gap:var(--space-3);justify-content:end">
+        <button class="button ghost" value="cancel" type="submit">Cancel</button>
+        <button class="button" value="submit" type="submit">Sign up</button>
+      </div>
+    </form>
+  </dialog>
+
+  <footer><div class="wrap">Built with semantic HTML, cascade layers and DTCG design tokens.</div></footer>
+</body>
+</html>

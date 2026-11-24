@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <title>Paper pop-up world</title>
+  <style>
+    html, body { margin: 0; height: 100%; background: #efd9dc; font-family: system-ui, sans-serif; }
+    canvas { display: block; width: 100vw; height: 100dvh; }
+    .label { position: fixed; left: 1rem; bottom: 1rem; padding: 0.5rem 0.8rem; border-radius: 0.6rem;
+             background: rgb(255 250 245 / 0.85); color: #3a2a30; font-size: 0.9rem; }
+    .fallback { display: none; padding: 2rem; }
+    .no-webgl canvas { display: none; } .no-webgl .fallback { display: block; }
+  </style>
+</head>
+<body>
+  <canvas id="c" aria-label="A paper-craft world where objects pop up as a small cat walks past"></canvas>
+  <p class="fallback">This demo needs WebGL 2.</p>
+  <div class="label" id="label">Paper pop-up world: objects fold up as the cat walks by</div>
+  <script type="module">
+    import { createWorld } from "./world.js";
+    const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const params = new URLSearchParams(location.search);
+    try {
+      const world = createWorld(document.getElementById("c"), { reducedMotion });
+      if (!world) throw new Error("no webgl2");
+      window.__world = world;
+      // ?t=SECONDS renders a fixed moment (used by tests and for screenshots)
+      const fixed = params.has("t") ? parseFloat(params.get("t")) : null;
+      if (fixed !== null) {
+        for (let t = 0; t < fixed; t += 1 / 60) world.frame(t, false);   // fast-forward without drawing
+        world.frame(fixed);
+        window.__ready = true;
+      } else {
+        const start = performance.now();
+        const loop = (ms) => { world.frame((ms - start) / 1000); requestAnimationFrame(loop); };
+        requestAnimationFrame(loop);
+        window.__ready = true;
+      }
+    } catch (e) {
+      console.warn(e);
+      document.documentElement.classList.add("no-webgl");
+      window.__ready = "fallback";
+    }
+  </script>
+</body>
+</html>
