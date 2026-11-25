@@ -9,7 +9,7 @@
     "build": "tsx scripts/build-manifest.ts && tsc --noEmit -p tsconfig.json && vite build",
     "preview": "node scripts/serve-subpath.mjs dist /",
     "manifest": "tsx scripts/build-manifest.ts",
-    "check": "tsx scripts/build-manifest.ts --check && tsc --noEmit -p tsconfig.json && eslint . && tsx scripts/check-repo.ts && node scripts/contrast.mjs && tsx scripts/check-licenses.ts && tsx scripts/test-migrate.ts",
+    "check": "tsx scripts/build-manifest.ts --check && tsc --noEmit -p tsconfig.json && eslint . && tsx scripts/check-repo.ts && node scripts/contrast.mjs && tsx scripts/check-licenses.ts && tsx scripts/test-migrate.ts && tsx scripts/test-setup-link.ts",
     "check:dist": "tsx scripts/check-dist.ts",
     "test": "npm run build && tsx scripts/check-dist.ts && playwright test"
   },

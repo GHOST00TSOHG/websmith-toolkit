@@ -36,6 +36,7 @@ test("the pill shows this load's sync time, not a stale one, and a bot reply upd
 
   await page.clock.runFor(7 * 60_000); // seven minutes later
   await page.locator("#settings-open").click();
+  await page.getByText("Connect your bot").click();
   await page.getByLabel("Webhook address").fill("https://bot.example.test/hook");
   await page.getByLabel("Key").fill("test-key-not-real");
   await page.getByRole("button", { name: "Save", exact: true }).click();

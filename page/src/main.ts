@@ -4,6 +4,8 @@ import { mountFilters } from "./list/filters.ts";
 import { readRows } from "./list/model.ts";
 import { mountSyncStatus } from "./connect/status.ts";
 import { canRemember, settings, updateSettings } from "./core/settings.ts";
+import { handleSetupLink, SETUP_NOTICE } from "./core/setup-link.ts";
+import { h } from "./core/dom.ts";
 import { seedFromLocation } from "./core/rng.ts";
 import { mountGreeting } from "./hero/greeting.ts";
 import { followSystemTheme } from "./theme/theme.ts";
@@ -13,10 +15,14 @@ import { holdStagesUntil, stage } from "./engine/stage.ts";
 import { playOpening } from "./opening/opening.ts";
 import { mountPower } from "./power/power.ts";
 
+// A one-time setup link from the owner's bot: cleared from the address first, then saved (before the
+// network policy below is narrowed to the saved bot).
+const setup = handleSetupLink(window, (webhook) => updateSettings({ webhook }));
 const root = document.documentElement;
 const seed = seedFromLocation();
 mountSafety();
 narrowNetworkToBot();
+if (setup !== "none") showSetupNotice(SETUP_NOTICE[setup], setup === "failed");
 root.dataset["display"] = isInstalled() ? "standalone" : "browser";
 
 // The opening plays first, over a static CSS veil that boot.js turned on before first paint. Every heavy
@@ -109,6 +115,17 @@ function narrowNetworkToBot(): void {
   meta.content = `connect-src 'self' ${origin}`;
   meta.dataset["narrow"] = origin;
   document.head.append(meta);
+}
+
+/** A short plain notice after a setup link, with a button to close it. No animation. */
+function showSetupNotice(text: string, failed: boolean): void {
+  const close = h("button", { class: "setup-notice-close", text: "Close", attrs: { type: "button" } });
+  const notice = h("div", { class: "setup-notice", attrs: { role: "status", "data-tone": failed ? "error" : "info" } }, [
+    h("p", { text }),
+    close,
+  ]);
+  close.addEventListener("click", () => notice.remove());
+  document.body.append(notice);
 }
 
 /** html.scrolled once the page leaves the top: the header's solid band fades in behind the pill. */

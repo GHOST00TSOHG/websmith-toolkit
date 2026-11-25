@@ -1,3 +1,37 @@
+/* The notice after a setup link from the owner's bot. Plain, no animation. */
+.setup-notice {
+  position: fixed;
+  inset: auto var(--page-pad) var(--page-pad);
+  z-index: 50;
+  display: flex;
+  gap: var(--sp-3);
+  align-items: center;
+  justify-content: space-between;
+  max-width: 28rem;
+  margin-inline: auto;
+  padding: var(--sp-3) var(--sp-4);
+  border: 1px solid var(--rim-hi);
+  border-radius: var(--r-chip);
+  background: var(--surface);
+  color: var(--text);
+}
+.setup-notice p {
+  margin: 0;
+}
+.setup-notice[data-tone="error"] p {
+  color: var(--danger);
+}
+.setup-notice-close {
+  min-height: var(--tap);
+  padding-inline: var(--sp-3);
+  border: 1px solid var(--rim-hi);
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
 /* The corner status ("Connected" pill). */
 /* ---------- Websmith connected ---------- */
 .sync-status {

@@ -11,21 +11,21 @@ export const PRIVACY_TEXT =
 export const STORED_TEXT =
   "Saved in this browser only: your name, theme, webhook address and key, the AI tools you connected, the last sync time, the toolkit version you last saw, and whether setup is done.";
 
-let built: { dialog: HTMLDialogElement; find: HTMLElement; url: HTMLInputElement } | null = null;
+let built: { dialog: HTMLDialogElement; find: HTMLElement; start: HTMLElement } | null = null;
 
 export function openSettings(focus: "start" | "find" = "start"): void {
   built ??= build();
-  const { dialog, find, url } = built;
+  const { dialog, find, start } = built;
   if (!dialog.open) dialog.showModal();
   if (focus === "find") {
     find.scrollIntoView({ block: "start" });
     find.querySelector("button")?.focus();
   } else {
-    url.focus();
+    start.focus();
   }
 }
 
-function build(): { dialog: HTMLDialogElement; find: HTMLElement; url: HTMLInputElement } {
+function build(): { dialog: HTMLDialogElement; find: HTMLElement; start: HTMLElement } {
   const { dialog, body } = makeSheet("settings-sheet", "Settings");
   const hook = settings().webhook;
 
@@ -73,6 +73,16 @@ function build(): { dialog: HTMLDialogElement; find: HTMLElement; url: HTMLInput
     say("Removed from this device.");
   });
 
+  // Closed by default: the bot fills these in with a setup link (src/core/setup-link.ts).
+  const summary = h("summary", { text: "Connect your bot" });
+  const connect = h("details", { class: "sheet-details" }, [
+    summary,
+    url.wrap,
+    key.wrap,
+    h("div", { class: "sheet-row" }, [save, remove]),
+    hookNote,
+  ]);
+
   // ---- Find my login
   const find = section("Find my login", [mountFindLogin()]);
 
@@ -89,7 +99,7 @@ function build(): { dialog: HTMLDialogElement; find: HTMLElement; url: HTMLInput
   });
 
   body.append(
-    section("Your Websmith bot", [url.wrap, key.wrap, h("div", { class: "sheet-row" }, [save, remove]), hookNote]),
+    section("Your Websmith bot", [connect]),
     find,
     section("This device", [
       h("p", { class: "sheet-note", text: PRIVACY_TEXT }),
@@ -97,5 +107,5 @@ function build(): { dialog: HTMLDialogElement; find: HTMLElement; url: HTMLInput
       h("div", { class: "sheet-row" }, [setup, clear]),
     ]),
   );
-  return { dialog, find, url: url.input };
+  return { dialog, find, start: summary };
 }

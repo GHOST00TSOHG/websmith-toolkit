@@ -13,12 +13,19 @@ Everything an owner sets there (name, theme, your webhook address and key, the A
 
 ## Connecting the owner's page to you
 
-1. Give the owner your webhook address (`https://...`) and a key made just for the page. Tell them to open PAGE_URL, tap **Settings** (the sliders button in the header, or **Connect your AI agent**), and paste both into **Webhook address** and **Key**, then **Save**.
-2. Never put the key in a URL, a query string, a chat log or a file in a repository. The page sends it only as `Authorization: Bearer <key>`.
+1. Send the owner a private setup link (next section). It fills in your webhook address and a key made just for the page. If they would rather type them, they can paste both under **Settings > Connect your bot** (**Webhook address** and **Key**), then **Save**.
+2. Apart from the private setup link, never put the key in a URL, a query string, a chat log or a file in a repository. The page sends it only as `Authorization: Bearer <key>`.
 3. The page accepts `https://` only (`http://localhost` for testing). Allow CORS for the page's origin:
    - `Access-Control-Allow-Origin: https://<github-user>.github.io` (not `*`)
    - `Access-Control-Allow-Headers: authorization, content-type`
    - `Access-Control-Allow-Methods: POST, OPTIONS`; answer the `OPTIONS` preflight with 204, and send the same headers on errors.
+
+## The private setup link
+
+1. Build it: `PAGE_URL + "#setup=" + base64url(JSON)`, where the JSON is exactly `{"webhook":"https://...","key":"..."}` (UTF-8, base64url, padding optional).
+2. Send it **only to your own owner, in a private channel**. Never post it publicly, in a repository, an issue, a log or a group chat.
+3. Tell the owner: "This link is private. It contains your key. Don't share it." Opening it saves the bot in their browser; the page removes the `#setup=` part from the address at once and shows "Your bot is connected." (or "That setup link didn't work.").
+4. If the key or the link may have leaked, rotate the key and send a new link.
 
 Every request is a JSON `POST` with `{ "v": 1, "op": "...", "requestId": "<uuid>" }`. Answer `{ "v": 1, "ok": true, "data": { ... } }` or `{ "v": 1, "ok": false, "error": { "code": "...", "message": "short, plain words" } }`. Treat a repeated `requestId` as the same request.
 

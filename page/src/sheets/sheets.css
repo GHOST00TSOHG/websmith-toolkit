@@ -146,3 +146,11 @@
 .sheet .btn:hover {
   transform: none;
 }
+.sheet-details > summary {
+  cursor: pointer;
+  font-weight: 500;
+}
+.sheet-details[open] {
+  display: grid;
+  gap: var(--sp-2);
+}

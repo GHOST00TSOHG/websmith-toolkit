@@ -42,6 +42,7 @@ test("Done saves the name for the greeting, and the sheet reopens from Settings"
 test("the webhook must be https (http only for localhost) and is never put in the URL", async ({ page }) => {
   await page.goto("./");
   await page.locator("#settings-open").click();
+  await page.getByText("Connect your bot").click();
   await page.getByLabel("Webhook address").fill("http://bot.example.test/hook");
   await page.getByLabel("Key").fill("test-key-not-real");
   await page.getByRole("button", { name: "Save", exact: true }).click();
