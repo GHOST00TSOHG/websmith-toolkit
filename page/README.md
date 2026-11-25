@@ -26,6 +26,17 @@ npm ci && npm run check && npm run build   # then: npm run check:dist
 - `npm run check:dist`: size budgets and the launch-gate scan of `dist/` (no secrets, notes, source maps, home paths, emails or third-party hosts).
 - `npm run dev`: local server (first free port from 5183). `npm test`: build, dist scan, Playwright in Chromium and WebKit.
 - The list needs full git history (dates come from it). In CI, check out with `fetch-depth: 0`.
-- Publishing: `deploy/websmith-page.yml` is staged; at go-live it moves to `.github/workflows/websmith-page.yml`, which builds and deploys to GitHub Pages on pushes to `main`. It does nothing until Pages is turned on (Settings > Pages > Source: GitHub Actions). See `LAUNCH-CHECKLIST.md` first.
+### Publishing
+
+The page is live at https://ghost00tsohg.github.io/websmith-toolkit/. GitHub Pages currently serves the **`gh-pages` branch** (root), which holds only the built files.
+
+**Manual rebuild (needed after every toolkit change until auto-rebuild is on):** on `main`, run `cd page && npm ci && npm run check && npm run build && npm run check:dist`, check the printed file list (no `.env`, keys, notes, `.md` or source maps), then commit the contents of `page/dist/` as the new tip of `gh-pages` and push. Pages republishes in about a minute.
+
+**Switch on auto-rebuild (one time, needs a GitHub login allowed to edit workflows):**
+1. Move the workflow: `git mv page/deploy/websmith-page.yml .github/workflows/websmith-page.yml`, commit and push to `main`. From a command line that needs the `workflow` permission (`gh auth refresh -s workflow`); or on github.com create `.github/workflows/websmith-page.yml` with the same contents.
+2. Settings > Pages > Build and deployment > Source: **GitHub Actions**.
+3. Run the workflow once (Actions > Websmith page > Run workflow), check the page, then delete the `gh-pages` branch.
+
+The workflow builds and deploys on pushes to `main` that touch the page or the toolkit, and does nothing while Pages is off.
 
 Code: MIT, like the rest of the repository. Credits: ThinkingOrbs (MIT, `src/vendor/thinking-orbs/`), Space Grotesk and JetBrains Mono (SIL OFL 1.1, `src/assets/fonts/`).

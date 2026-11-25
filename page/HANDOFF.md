@@ -1,7 +1,9 @@
 # Handoff
 
-## State: round TPL1 "template page" (branch `websmith-page`, not pushed)
-The page lives in `page/` inside the toolkit repo and is ready to become one public GitHub Pages site for every owner. Nothing is published: no push, no merge, Pages off, workflow never run. Before going public, work through `LAUNCH-CHECKLIST.md` (2 FAIL/decisions, the rest mostly owner checks).
+## State: LIVE (Nov 24 2026, 7:07 PM ET) at https://ghost00tsohg.github.io/websmith-toolkit/
+`websmith-page` was fast-forwarded into `main` (95f62f4). GitHub Pages serves the **`gh-pages` branch** (root), which holds only the built `dist/` files (first build d5007d2 from main 95f62f4). HTTPS is enforced. This is the only Pages site on the account (checklist item 20).
+
+**Auto-rebuild is OFF.** The workflow is still parked at `deploy/websmith-page.yml`, because the publishing login cannot push workflow files. Until it is switched on, every toolkit change needs a **manual gh-pages rebuild** (see README "Publishing"). To switch it on, the owner moves the file into `.github/workflows/` (README "Publishing") and changes Pages to Source: GitHub Actions; then delete the `gh-pages` branch.
 
 ## Round TPL2 "setup link" (on top of TPL1)
 - Settings: the webhook address and key sit under a closed "Connect your bot" `<details>` (not in the first-run sheet). The two e2e specs that fill them now open it first (not run).
@@ -32,7 +34,7 @@ Old keys: `ws.v1.profile`, `theme`, `seen`, `lastSync`, `toolkitSha`, `agent` (p
 Only `npm run check`, `npm run build` and the dist scan were run (all green). Playwright was not run and no browser was opened; `tests/e2e/setup.spec.ts` is new and unrun. The helper was syntax-checked only. The GPU budget was not re-measured (no new layers by construction). The workflow, its action versions and the `has_pages` gate are untested; it uses Node 22.
 
 ## Next
-Owner: decide item 20 in `LAUNCH-CHECKLIST.md`, OK the privacy and consent wording, then run `npm test` and check on iPhone and desktop. Then merge, enable Pages (Source: GitHub Actions) and watch the first run.
+Owner: test the live page on iPhone and desktop (checklist items 14, 15, 23), OK the privacy, consent and setup-link wording, and switch on auto-rebuild (README "Publishing"). Until then rebuild gh-pages by hand after each toolkit change.
 
 ## Earlier rounds (short)
 R1 plan; R2 showcase; R3 visual rebuild and polish (cloth, header); R4 "fewer, bigger" (opening, cloth, orb; iPhone safety); R5 polish (centring, opaque header, real sync time); R6 list view (no cards or demos, plain-English descriptions). Details are in git history and `docs/PLAN.md` section 6.
