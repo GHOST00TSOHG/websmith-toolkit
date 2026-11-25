@@ -28,15 +28,8 @@ npm ci && npm run check && npm run build   # then: npm run check:dist
 - The list needs full git history (dates come from it). In CI, check out with `fetch-depth: 0`.
 ### Publishing
 
-The page is live at https://ghost00tsohg.github.io/websmith-toolkit/. GitHub Pages currently serves the **`gh-pages` branch** (root), which holds only the built files.
+The page is live at https://ghost00tsohg.github.io/websmith-toolkit/ (Pages source: **GitHub Actions**).
 
-**Manual rebuild (needed after every toolkit change until auto-rebuild is on):** on `main`, run `cd page && npm ci && npm run check && npm run build && npm run check:dist`, check the printed file list (no `.env`, keys, notes, `.md` or source maps), then commit the contents of `page/dist/` as the new tip of `gh-pages` and push. Pages republishes in about a minute.
-
-**Switch on auto-rebuild (one time, needs a GitHub login allowed to edit workflows):**
-1. Move the workflow: `git mv page/deploy/websmith-page.yml .github/workflows/websmith-page.yml`, commit and push to `main`. From a command line that needs the `workflow` permission (`gh auth refresh -s workflow`); or on github.com create `.github/workflows/websmith-page.yml` with the same contents.
-2. Settings > Pages > Build and deployment > Source: **GitHub Actions**.
-3. Run the workflow once (Actions > Websmith page > Run workflow), check the page, then delete the `gh-pages` branch.
-
-The workflow builds and deploys on pushes to `main` that touch the page or the toolkit, and does nothing while Pages is off.
+`.github/workflows/websmith-page.yml` rebuilds and redeploys it on every push to `main` that touches `page/`, `skills/`, `kits/`, `animations/`, `install/`, `motion/` or `README.md`, and on manual runs (Actions > Websmith page > Run workflow). It runs `npm ci`, `npm run check`, `npm run build` and `npm run check:dist` on Node 24, so a missing description or a leak in `dist/` stops the deploy and the last good page stays up. Every job is gated on `has_pages`, so nothing runs if Pages is turned off.
 
 Code: MIT, like the rest of the repository. Credits: ThinkingOrbs (MIT, `src/vendor/thinking-orbs/`), Space Grotesk and JetBrains Mono (SIL OFL 1.1, `src/assets/fonts/`).
