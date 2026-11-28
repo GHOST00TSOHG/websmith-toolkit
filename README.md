@@ -61,6 +61,10 @@ For the motion kit, clone this repository (or sparse-checkout `motion/`), then f
 
 Scripts are idempotent. They check for an existing install before downloading, and they verify SHA-256 checksums when the upstream project publishes them.
 
+## On-device dictation
+
+Parakeet — NVIDIA's open-source speech-to-text model for on-device dictation.
+
 ## Licences
 
 Files in this repository are MIT (see `LICENSE`), except where a bundled third-party file carries its own licence.
